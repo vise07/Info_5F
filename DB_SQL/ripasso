@@ -49,117 +49,84 @@ drop table pazienti;
 drop table visite;
 
 
-
--- elencare piazenti senza codice_asl
 select *
 from pazienti
 where codice_asl is null;
 
 
--- elencare tutte le visite data_visita, cognome, peso in visita
 select v.data_visita, p.cognome, v.peso
 from pazienti p
 inner join visite v
-on p.Id_paziente = v.id_paziente;
+on v.id_paziente = p.Id_paziente;
 
 
--- elencare tutti i pazienti con differenza fra pressione minima e massima inferiore a 40 orchi di dio
-select *
+select p.*, v.pressione_min, v.pressione_max
 from pazienti p
 inner join visite v
-on p.Id_paziente = v.id_paziente
+on v.id_paziente = p.Id_paziente
 where (pressione_max - pressione_min) <= 40;
 
 
--- elencare tutti i pazienti che pesano tra 60 e 70 kg
 select p.*, v.peso
 from pazienti p
 inner join visite v
-on p.Id_paziente = v.id_paziente
+on v.id_paziente = p.Id_paziente
 where peso between 60 and 70;
 
 
--- elencare tutti i pazienti di Milano che hanno peso maggiore di 90 orchi di dio
 select p.*, v.peso
 from pazienti p
 inner join visite v
-on p.Id_paziente = v.id_paziente
-where p.provincia = 'Milano' and v.peso > 60;
+on v.id_paziente = p.Id_paziente
+where p.provincia = 'Milano' and v.peso > 90;
 
 
--- elencare tutti i pazienti di Napoli con problemi di diabete, glicemia maggiore di 110 nell'anno 2020
-select p.*, v.glicemia
+select p.*, v.glicemia, v.data_visita
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
-where v.glicemia > 110 and v.data_visita like '2020-%-%';
--- where v.glicemia > 110 and year(v.data_visita) = '2020';
+on v.id_paziente = p.Id_paziente
+where p.provincia = 'Napoli' and v.glicemia > 110 and year(v.data_visita) = '2020';
+-- where p.provincia = 'Napoli' and v.glicemia > 110 and v.data_visita like '2020-%-%';
 
 
--- elencare tutti i pazienti di roma ipertesi con peso inferiore a 60
 select p.*, v.peso
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
+on v.id_paziente = p.Id_paziente
 where p.provincia = 'Roma' and v.peso < 60;
 
 
--- elencare tutti i pazienti in ordine alfabetico con visite effettuate quest'anno
 select p.*, v.data_visita
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
+on v.id_paziente = p.Id_paziente
 where year(v.data_visita) = year(curdate())
 order by p.cognome desc;
 
 
--- Mostra tutti i pazienti che hanno fatto più di 1 visita nel 2020
-select p.nome, p.cognome, COUNT(*) as conta_visite
+select  p.nome, p.cognome, count(*) as conta_visite
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
-where year(v.data_visita) = '2020' 
+on v.id_paziente = p.Id_paziente
+where year(v.data_visita) = '2020';
 group by p.nome, p.cognome
 having conta_visite > 1;
 
 
--- Elenco pazienti con media glicemia > 110 nel 2020
 select p.nome, p.cognome, avg(glicemia) as media_glicemia
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
-where year(v.data_visita) = '2020'
+on v.id_paziente = p.Id_paziente
+where year(v.data_visita) = '2020';
 group by p.nome, p.cognome
 having media_glicemia > 110;
 
 
--- Mostrare i pazienti di Napoli che hanno fatto almeno 2 visite nel 2020.
--- Calcolare la media della glicemia per ogni paziente.
--- Filtrare solo quelli con media glicemia > 110.
 
 select p.nome, p.cognome, count(*) as conta_visite, avg(glicemia) as media_glicemia
 from pazienti p
 inner join visite v
-on p.id_paziente = v.Id_paziente
+on v.id_paziente = p.Id_paziente
 where p.provincia = 'Napoli' and year(v.data_visita) = '2020'
 group by p.nome, p.cognome
-having conta_visite >=2 and media_glicemia > 110;
-
-
--- visualizza le persone che il nome inizia con la c
-select *
-from pazienti
-where nome like 'C%';
-
-
--- where   between   and   or   like   asc   desc   count   avg   inner join   right join   left join   group by   having   as   year   curdate()   full join
-
-
-select p.*, v.*
-from pazienti p
-left join visite v
-on p.id_paziente = v.Id_paziente
-union
-from pazienti p
-right join visite v
-on p.id_paziente = v.Id_paziente
+having conta_visite >= 2 and media_glicemia > 110;
