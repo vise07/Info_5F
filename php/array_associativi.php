@@ -77,14 +77,14 @@ print_r($squaredArray);
 
 // 14. array_filter() - Filtra gli elementi di un array usando una funzione
 $filteredArray = array_filter($mergedArray, function($value) {
-    return $value > 3; // Filtra valori maggiori di 3
+    return $value > 3;
 });
 echo "Array dopo array_filter (valori > 3): ";
 print_r($filteredArray);
 
 // 15. array_walk() - Applica una funzione a tutti gli elementi di un array
 array_walk($array2, function(&$value, $key) {
-    $value *= 2; // Moltiplica ogni valore per 2
+    $value *= 2;
 });
 echo "Array dopo array_walk (valori * 2): ";
 print_r($array2);
