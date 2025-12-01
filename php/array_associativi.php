@@ -90,7 +90,7 @@ echo "Array dopo array_walk (valori * 2): ";
 print_r($array2);
 
 // 16. array_slice() - Estrae una porzione di un array
-$slicedArray = array_slice($mergedArray, 1, 2); // Estrae 2 elementi a partire dalla posizione 1
+$slicedArray = array_slice($mergedArray, 1, 2);
 echo "Array dopo array_slice (estratto 2 elementi): ";
 print_r($slicedArray);
 
