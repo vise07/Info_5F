@@ -3,7 +3,6 @@
 $testo = "  ciao mondo php  ";
 $testoPulito = trim($testo);
 
-// ---- FUNZIONI BASE ----
 echo "strlen: " . strlen($testo) . "<br>";
 echo "strrev: " . strrev($testo) . "<br>";
 echo "strtolower: " . strtolower($testo) . "<br>";
@@ -14,16 +13,12 @@ echo "trim: '" . trim($testo) . "'<br>";
 echo "ltrim: '" . ltrim($testo) . "'<br>";
 echo "rtrim: '" . rtrim($testo) . "'<br>";
 
-// ---- explode / implode ----
 $array = explode(" ", $testoPulito);
 echo "explode: ";
 print_r($array);
 echo "<br>";
 
 echo "implode: " . implode("-", $array) . "<br>";
-
-
-// ---- NUOVE FUNZIONI ----
 
 // str_replace
 echo "str_replace (sostituisce 'php' con 'PHP!'): " . str_replace("php", "PHP!", $testoPulito) . "<br>";
