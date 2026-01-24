@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+label {
+    font-weight: bold;
+}
+
+.box {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 300px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
