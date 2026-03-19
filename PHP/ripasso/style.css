@@ -1,7 +1,43 @@
-table, th, td{
-    background: aqua;
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f8f8;
 }
 
-label{
-    font-family: cursive;
+header {
+    background-color: #333;
+    padding: 10px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    background-color: white;
+}
+
+table th, table td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #555;
+    color: white;
 }
