@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS fastroute;
 CREATE DATABASE fastroute;
 USE fastroute;
 
@@ -65,3 +66,16 @@ CREATE TABLE richiesta_info (
     messaggio TEXT NOT NULL,
     data_richiesta DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO personale (email, password_hash, primo_accesso, tema_background) 
+VALUES ('admin@fastroute.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0, 'light');
+
+INSERT INTO sede (nome, citta, indirizzo, telefono) VALUES
+('Sede Centrale Milano', 'Milano', 'Via Roma 1, 20121 Milano', '02 1234567'),
+('Sede Roma Tiburtina', 'Roma', 'Via Tiburtina 150, 00185 Roma', '06 7654321'),
+('Sede Napoli Centrale', 'Napoli', 'Corso Umberto I 50, 80138 Napoli', '081 9876543'),
+('Sede Torino', 'Torino', 'Corso Vittorio Emanuele II 100, 10121 Torino', '011 555666'),
+('Sede Bologna', 'Bologna', 'Via Indipendenza 25, 40121 Bologna', '051 444333'),
+('Sede Firenze', 'Firenze', 'Via dei Neri 10, 50122 Firenze', '055 777888'),
+('Sede Palermo', 'Palermo', 'Via Roma 300, 90133 Palermo', '091 999000'),
+('Sede Venezia', 'Venezia', 'Corso del Popolo 5, 30100 Venezia', '041 222333');
